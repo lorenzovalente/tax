@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TaxPolicySupplier {
 
-  public static Collection<TaxPolicy> policiesFrom(Item item) {
+  public static Collection<TaxPolicy> supplyFor(Item item) {
 
     Collection<TaxPolicy> policies = new HashSet<>();
     if (!isTaxExempt(item.getCategory())) {

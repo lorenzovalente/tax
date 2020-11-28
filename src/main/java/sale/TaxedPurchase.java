@@ -1,7 +1,7 @@
 package sale;
 
 import static java.math.BigDecimal.ZERO;
-import static tax.TaxPolicySupplier.policiesFrom;
+import static tax.TaxPolicySupplier.supplyFor;
 import item.Item;
 import java.math.BigDecimal;
 import lombok.Builder;
@@ -26,7 +26,7 @@ public class TaxedPurchase extends Purchase {
     BigDecimal taxedPrice = unitPrice;
     BigDecimal appliedTax = ZERO;
 
-    for (TaxPolicy policy : policiesFrom(item)) {
+    for (TaxPolicy policy : supplyFor(item)) {
       BigDecimal unitPriceAfterTax = policy.applyTo(unitPrice);
       appliedTax = appliedTax.add(unitPriceAfterTax);
       taxedPrice = taxedPrice.add(unitPriceAfterTax);
