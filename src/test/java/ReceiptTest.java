@@ -10,10 +10,10 @@ import java.util.LinkedHashSet;
 import org.junit.Test;
 import sale.TaxedPurchase;
 
-public class TaxServiceTest {
+public class ReceiptTest {
 
   @Test
-  public void testGetReceipt() {
+  public void test() {
 
     Collection<TaxedPurchase> purchases = new LinkedHashSet<>();
 
@@ -39,12 +39,12 @@ public class TaxServiceTest {
 
     Receipt receipt = Receipt.from(purchases);
 
+    assertEquals(new BigDecimal("169.66"), receipt.getTotal());
+    assertEquals(new BigDecimal("15.85"), receipt.getTaxTotal());
+
     Collection<TaxedPurchase> taxedPurchases = receipt.getPurchases();
 
     assertEquals(9, taxedPurchases.size());
-
-    assertEquals(new BigDecimal("169.66"), receipt.getTotal());
-    assertEquals(new BigDecimal("15.85"), receipt.getTaxTotal());
 
     Iterator<TaxedPurchase> iterator = taxedPurchases.iterator();
 

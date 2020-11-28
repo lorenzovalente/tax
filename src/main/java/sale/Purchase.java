@@ -12,9 +12,9 @@ import lombok.experimental.NonFinal;
 @RequiredArgsConstructor(access = PROTECTED)
 public class Purchase {
 
-   protected int quantity;
+   int quantity;
 
-   protected Item item;
+   Item item;
 
-   protected BigDecimal unitPrice;
+   BigDecimal unitPrice;
 }

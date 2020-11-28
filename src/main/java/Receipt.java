@@ -23,8 +23,8 @@ public class Receipt {
 
     for (TaxedPurchase purchase : purchases) {
       BigDecimal quantity = new BigDecimal(purchase.getQuantity());
-      total = quantity.multiply(total.add(purchase.getTaxedPrice()));
-      taxTotal = quantity.multiply(taxTotal.add(purchase.getAppliedTax()));
+      total = total.add(quantity.multiply(purchase.getTaxedPrice()));
+      taxTotal = taxTotal.add(quantity.multiply(purchase.getAppliedTax()));
     }
 
     return Receipt.of(purchases, total, taxTotal);
@@ -34,10 +34,12 @@ public class Receipt {
     StringBuilder stringBuilder = new StringBuilder();
     getPurchases().forEach(purchase -> {
       Item item = purchase.getItem();
+      int quantity = purchase.getQuantity();
       stringBuilder.append(on(SPACE).join(
+        quantity,
         item.getName(),
         "at",
-        purchase.getTaxedPrice(), "\n"));
+        purchase.getTaxedPrice().multiply(new BigDecimal(quantity)), "\n"));
     });
     return stringBuilder.toString();
   }

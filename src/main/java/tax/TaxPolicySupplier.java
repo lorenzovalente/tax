@@ -10,7 +10,7 @@ import java.util.HashSet;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class TaxProcessor {
+public class TaxPolicySupplier {
 
   public static Collection<TaxPolicy> policiesFrom(Item item) {
 

@@ -1,8 +1,7 @@
 package sale;
 
-import static common.Rounder.round;
 import static java.math.BigDecimal.ZERO;
-import static tax.TaxProcessor.policiesFrom;
+import static tax.TaxPolicySupplier.policiesFrom;
 import item.Item;
 import java.math.BigDecimal;
 import lombok.Builder;
@@ -20,7 +19,7 @@ public class TaxedPurchase extends Purchase {
 
   BigDecimal appliedTax;
 
-  @Builder(toBuilder = true)
+  @Builder
   private TaxedPurchase(Item item, int quantity, BigDecimal unitPrice) {
     super(quantity, item, unitPrice);
 
@@ -33,7 +32,7 @@ public class TaxedPurchase extends Purchase {
       taxedPrice = taxedPrice.add(unitPriceAfterTax);
     }
 
-    this.taxedPrice = round(taxedPrice);
-    this.appliedTax = round(appliedTax);
+    this.taxedPrice = taxedPrice;
+    this.appliedTax = appliedTax;
   }
 }
