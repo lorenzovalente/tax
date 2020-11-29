@@ -1,15 +1,9 @@
 package tax;
 
-import static item.ItemCategory.BOOK;
-import static item.ItemCategory.FOOD;
-import static item.ItemCategory.MEDICAL;
 import item.Item;
-import item.ItemCategory;
 import java.util.Collection;
 import java.util.HashSet;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 public class TaxPolicySupplier {
 
   public static Collection<TaxPolicy> supplyFor(Item item) {
@@ -24,8 +18,8 @@ public class TaxPolicySupplier {
     return policies;
   }
 
-  private static boolean isTaxExempt(ItemCategory category) {
-    return BOOK == category || FOOD == category || MEDICAL == category;
+  private static boolean isTaxExempt(String category) {
+    return category.equalsIgnoreCase("book") || category.equalsIgnoreCase("food") || category.equalsIgnoreCase("medical");
   }
 
 }

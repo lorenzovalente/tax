@@ -1,15 +1,13 @@
 package sale;
 
-import static lombok.AccessLevel.PROTECTED;
+import static com.google.common.base.Preconditions.checkArgument;
 import item.Item;
 import java.math.BigDecimal;
-import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import lombok.experimental.NonFinal;
 
 @Value
 @NonFinal
-@RequiredArgsConstructor(access = PROTECTED)
 public class Purchase {
 
    int quantity;
@@ -17,4 +15,13 @@ public class Purchase {
    Item item;
 
    BigDecimal unitPrice;
+
+   Purchase(int quantity, Item item, BigDecimal unitPrice) {
+
+      checkArgument(item != null, "Item must be provided");
+      checkArgument(unitPrice != null, "Unit price must be provided");
+      this.quantity = quantity;
+      this.item = item;
+      this.unitPrice = unitPrice;
+   }
 }

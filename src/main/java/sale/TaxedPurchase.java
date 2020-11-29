@@ -6,12 +6,10 @@ import item.Item;
 import java.math.BigDecimal;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import lombok.Value;
 import tax.TaxPolicy;
 
 @Value
-@ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class TaxedPurchase extends Purchase {
 
@@ -21,6 +19,7 @@ public class TaxedPurchase extends Purchase {
 
   @Builder
   private TaxedPurchase(Item item, int quantity, BigDecimal unitPrice) {
+
     super(quantity, item, unitPrice);
 
     BigDecimal taxedPrice = unitPrice;

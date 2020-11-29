@@ -1,27 +1,28 @@
 package item;
 
-import static com.google.common.base.Preconditions.checkState;
+import static com.google.common.base.Preconditions.checkArgument;
+import static lombok.AccessLevel.PRIVATE;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.RequiredArgsConstructor;
+import lombok.Value;
 
-@Getter
-@EqualsAndHashCode
-@ToString
-public abstract class Item {
+//TODO: make it abstract when requirements over this class grow more complex
+@Value
+@RequiredArgsConstructor(access = PRIVATE)
+public class Item {
 
-  protected String name;
+  String name;
 
-  protected ItemCategory category;
+  // TODO: use Enum when requirements over this field grow more complex
+  String category;
 
-  protected boolean imported;
+  boolean imported;
 
-  public Item(String name, ItemCategory category, boolean imported) {
+  public static Item of(String name, String category, boolean imported) {
 
-    checkState(isNotBlank(name), "Item name must be provided");
-    this.name = name;
-    this.category = category;
-    this.imported = imported;
+    checkArgument(isNotBlank(name), "Item name must be provided");
+    checkArgument(isNotBlank(category), "Item category must be provided");
+
+    return new Item(name, category, imported);
   }
 }
