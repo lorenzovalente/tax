@@ -41,6 +41,8 @@ public class Receipt {
         "at",
         purchase.getTaxedPrice().multiply(new BigDecimal(quantity)), "\n"));
     });
+    stringBuilder.append("Sales Taxes:").append(SPACE).append(getTaxTotal()).append("\n");
+    stringBuilder.append("Total:").append(SPACE).append(getTotal());
     return stringBuilder.toString();
   }
 }
